@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use DateTime;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
+
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
