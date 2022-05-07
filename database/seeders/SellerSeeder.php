@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class SellerSeeder extends Seeder
 {
@@ -13,6 +14,12 @@ class SellerSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $data = [
+            
+        ];
+
+        foreach($data as $value){
+            DB::table('sellers')->insert($value);
+        }
     }
 }
