@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +21,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.index');
+        $data = auth()->user()->Seller;
+        return view('products.index')->with('data', $data);
     }
 
     /**
