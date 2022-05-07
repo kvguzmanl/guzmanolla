@@ -47,17 +47,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        /**
-        * $data =  $request->validate([
-        *     'productName' => 'required|min:5|max:50',
-        * ]);
-        * DB::table('products')->insert([
-        *     'productName' => $data['productName'],
-        *     'created_at' => Carbon::now(),
-        *     'updated_at' => Carbon::now()
-        * ]);
-        */
-        return view('products.index');
+        $form = $request->validate([
+            'nombre' => 'required|min:5|max:50',
+            'descripcion' => 'required|min:5|max:50',
+            'precio_unitario' => 'required',
+            'existencia' => 'required',
+            'garantia' => 'required',
+        ]);
+        DB::table('products')->insert([
+            'nombre' => $form['nombre'],
+            'descripcion' => $form['descripcion'],
+            'precio_unitario' => $form['precio_unitario'],
+            'existencia' => $form['existencia'],
+            'garantia' => $form['garantia'],
+            'id_vendedor' => auth()->user()->Seller->id
+        ]);
+        return redirect()->action([ProductController::class, 'index']);
     }
 
     /**
