@@ -20,8 +20,12 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $data = auth()->user()->Seller;
+    {   
+        $data=array();
+        $usuario=auth()->user()->Seller;
+        if(!empty($usuario)){
+            $data = Product::all()->whereIn('id_vendedor', $usuario->id);
+        }
         return view('products.index')->with('data', $data);
     }
 
