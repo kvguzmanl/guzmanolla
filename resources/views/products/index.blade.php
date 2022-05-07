@@ -39,7 +39,7 @@
                                             <td>{{$item->garantia}}</td>
                                             <td>
                                                 <button class="btn btn-primary">Editar</button>
-                                                <button class="btn btn-danger" onclick="Eliminar(JSON.stringify({{$item}}))">Eliminar</button>
+                                                <a class="btn btn-danger" href="{{ route('products.destroy', ['product' => $item->id ])}}" >Eliminar</button>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -51,20 +51,19 @@
             </div>
         </div>
     </div>
-@endsection
-@section('js')
+    
 
 <script type="text/javascript">
 
     function Eliminar(data){
         var datos = JSON.parse(data);
         console.log(datos['id']);
-        Swal({
-            title: 'Desea eliminar el registro con ID: ' + data.id + "?", 
-            type: 'question',
-        }).then((result) => {
 
-        })
+        var question = confirm('¿Desea eliminar el registro con ID: ?' + datos.id);
+        if(question){
+        }
     }
 </script>
+@endsection
+@section('js')
 @endsection
